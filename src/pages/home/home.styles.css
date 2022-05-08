@@ -1,0 +1,17 @@
+.homeContainer{
+    display: flex;
+    align-items: center;
+}
+.loginSection{
+    width: 40%;
+}
+.coverImage{
+    width: 60%;
+    height: 600px;
+    background-color: aqua;
+}
+.image{
+    width: 100%;
+    height: 100%;   
+    object-fit: cover;   
+}
