@@ -7,9 +7,9 @@ const Home = () => {
       <div className='loginSection'>
         <LoginSection />
       </div>
-      <div className='coverImage'>
+      <div className='coverImageSection'>
         <img
-          className='image'
+          className='coverImage'
           src={require('../../assets/Marching Fire.jpg')}
           alt=''
         />

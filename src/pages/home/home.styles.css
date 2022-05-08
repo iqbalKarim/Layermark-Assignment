@@ -5,12 +5,12 @@
 .loginSection{
     width: 40%;
 }
-.coverImage{
+.coverImageSection{
+    height: 700px;
     width: 60%;
-    height: 600px;
     background-color: aqua;
 }
-.image{
+.coverImage{
     width: 100%;
     height: 100%;   
     object-fit: cover;   
