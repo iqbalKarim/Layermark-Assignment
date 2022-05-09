@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+const axiosInstance = axios.create();
 // https://dcw-test.layermark.com/auth/realms/AssetManagement/protocol/openid-connect/token
 
 // -H 'Content-Type: application/x-www-form-urlencoded'
@@ -9,26 +10,40 @@ import axios from 'axios';
 //--data-urlencode 'grant_type=password'
 //--data-urlencode 'scope=openid offline_access'
 
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (typeof error.response === 'undefined') {
+      alert(
+        'A network error occurred. ' +
+          'This could be a CORS issue or a dropped internet connection. ' +
+          'It is not possible for us to know.'
+      );
+    }
+    return Promise.reject(error);
+  }
+);
+
 export const signIn = (username, password) => {
-  const body = {
+  const data = {
     scope: 'openid offline_access',
     grant_type: 'password',
     client_id: 'AMS',
-    username: { username },
-    password: { password },
+    username: username,
+    password: password,
   };
 
-  console.log(JSON.stringify(body));
-
-  let response = '';
-
-  axios
+  axiosInstance
     .post(
       'https://dcw-test.layermark.com/auth/realms/AssetManagement/protocol/openid-connect/token',
-      JSON.stringify(body)
+      data
     )
-    .then((res) => (response = res))
-    .catch((err) => (response = err));
-
-  return response;
+    .then((res) => {
+      console.log('then');
+      return res;
+    })
+    .catch((err) => {
+      console.log('catch', err.response.headers);
+      return err;
+    });
 };
