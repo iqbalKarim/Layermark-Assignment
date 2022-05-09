@@ -9,6 +9,7 @@ import './loginForm.styles.css';
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [transactionInProcess, setTransactionInProcess] = useState(false);
   const dispatch = useDispatch();
 
   const usernameChangeListener = (e) => {
@@ -19,9 +20,15 @@ const LoginForm = () => {
   };
   const logInHandler = async (e) => {
     e.preventDefault();
-    const res = await signIn(username, password);
-    console.log(res.response);
-    dispatch(setUser({ username: username, token: password }));
+    setTransactionInProcess(true);
+    try {
+      var res = await signIn(username, password);
+      dispatch(setUser({ username: username, token: password }));
+    } catch (error) {
+      alert(error.response.data.error_description);
+      console.log(error.response.data.error_description);
+    }
+    setTransactionInProcess(false);
   };
 
   return (
@@ -44,7 +51,9 @@ const LoginForm = () => {
         value={password}
         onChange={(e) => passwordChangeListener(e)}
       />
-      <Button type='submit'>LOGIN</Button>
+      <Button type='submit' disabled={transactionInProcess}>
+        LOGIN
+      </Button>
     </form>
   );
 };

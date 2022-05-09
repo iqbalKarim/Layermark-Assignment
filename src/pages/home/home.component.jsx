@@ -14,7 +14,7 @@ const Home = () => {
       <div className='coverImageSection'>
         <img
           className='coverImage'
-          src={require('../../assets/Marching Fire.jpg')}
+          src={require('../../assets/hero.png')}
           alt=''
         />
       </div>

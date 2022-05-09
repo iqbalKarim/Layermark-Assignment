@@ -41,20 +41,4 @@ export const signIn = async (username, password) => {
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
     }
   );
-
-  // await axiosInstance
-  //   .post(
-  //     '/auth/realms/AssetManagement/protocol/openid-connect/token',
-  //     stringify(data),
-  //     {
-  //       headers: { 'content-type': 'application/x-www-form-urlencoded' },
-  //     }
-  //   )
-  //   .then((res) => {
-  //     return res;
-  //   })
-  //   .catch((err) => {
-  //     console.log(err.response.data);
-  //     return err;
-  //   });
 };

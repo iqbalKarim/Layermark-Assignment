@@ -1,3 +1,6 @@
+button:focus{
+    outline: none;
+}
 .loginButton{
     width: 100%;
     padding: 15px;
@@ -6,4 +9,7 @@
     border-radius: 10px;
     color: white;
     margin: 15px 0px;
+}
+.disabled{
+    background-color: lightgray;
 }
