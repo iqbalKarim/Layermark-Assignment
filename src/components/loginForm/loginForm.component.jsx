@@ -17,13 +17,11 @@ const LoginForm = () => {
   const passwordChangeListener = (e) => {
     setPassword(e.target.value);
   };
-  const logInHandler = (e) => {
+  const logInHandler = async (e) => {
     e.preventDefault();
+    const res = await signIn(username, password);
+    console.log(res.response);
     dispatch(setUser({ username: username, token: password }));
-    const res = signIn(username, password);
-    if (res === '') {
-      alert('Could not sign in user.');
-    }
   };
 
   return (

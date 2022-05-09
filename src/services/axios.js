@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { stringify } from 'query-string';
 
 const axiosInstance = axios.create();
 // https://dcw-test.layermark.com/auth/realms/AssetManagement/protocol/openid-connect/token
@@ -24,26 +25,36 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-export const signIn = (username, password) => {
+export const signIn = async (username, password) => {
   const data = {
-    scope: 'openid offline_access',
     grant_type: 'password',
     client_id: 'AMS',
+    scope: 'openid offline_access',
     username: username,
     password: password,
   };
 
-  axiosInstance
-    .post(
-      'https://dcw-test.layermark.com/auth/realms/AssetManagement/protocol/openid-connect/token',
-      data
-    )
-    .then((res) => {
-      console.log('then');
-      return res;
-    })
-    .catch((err) => {
-      console.log('catch', err.response.headers);
-      return err;
-    });
+  return await axiosInstance.post(
+    '/auth/realms/AssetManagement/protocol/openid-connect/token',
+    stringify(data),
+    {
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+    }
+  );
+
+  // await axiosInstance
+  //   .post(
+  //     '/auth/realms/AssetManagement/protocol/openid-connect/token',
+  //     stringify(data),
+  //     {
+  //       headers: { 'content-type': 'application/x-www-form-urlencoded' },
+  //     }
+  //   )
+  //   .then((res) => {
+  //     return res;
+  //   })
+  //   .catch((err) => {
+  //     console.log(err.response.data);
+  //     return err;
+  //   });
 };
