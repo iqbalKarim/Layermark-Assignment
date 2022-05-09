@@ -2,10 +2,6 @@ import axios from 'axios';
 
 // https://dcw-test.layermark.com/auth/realms/AssetManagement/protocol/openid-connect/token
 
-// const axiosInstance = axios.create({
-//   baseURL: 'https://dcw-test.layermark.com',
-// });
-
 // -H 'Content-Type: application/x-www-form-urlencoded'
 // --data-urlencode 'username={username}'
 //--data-urlencode 'password={password}'
@@ -22,11 +18,17 @@ export const signIn = (username, password) => {
     password: { password },
   };
 
+  console.log(JSON.stringify(body));
+
+  let response = '';
+
   axios
     .post(
-      '// https://dcw-test.layermark.com/auth/realms/AssetManagement/protocol/openid-connect/token',
-      body
+      'https://dcw-test.layermark.com/auth/realms/AssetManagement/protocol/openid-connect/token',
+      JSON.stringify(body)
     )
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+    .then((res) => (response = res))
+    .catch((err) => (response = err));
+
+  return response;
 };

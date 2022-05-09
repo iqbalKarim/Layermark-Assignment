@@ -16,8 +16,8 @@ const LoginForm = () => {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(username, password);
-    signIn(username, password);
+
+    console.log(signIn(username, password));
   };
 
   return (
