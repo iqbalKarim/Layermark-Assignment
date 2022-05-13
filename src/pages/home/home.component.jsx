@@ -1,25 +1,23 @@
-import { useSelector } from 'react-redux';
 import LoginSection from '../../components/loginSection/loginSection.component';
 import './home.styles.css';
 
-const Home = () => {
-  const user = useSelector((state) => state.user);
-  console.log(user);
-
+const Login = () => {
   return (
-    <div className='homeContainer'>
-      <div className='loginSection'>
-        <LoginSection />
-      </div>
-      <div className='coverImageSection'>
-        <img
-          className='coverImage'
-          src={require('../../assets/hero.png')}
-          alt=''
-        />
+    <div className='loginContainer'>
+      <div className='login'>
+        <div className='loginSection'>
+          <LoginSection />
+        </div>
+        <div className='coverImageSection'>
+          <img
+            className='coverImage'
+            src={require('../../assets/hero.png')}
+            alt=''
+          />
+        </div>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default Login;
